@@ -1,0 +1,56 @@
+{
+    "name": "g8scope/symfony",
+    "version": "1.0.0",
+    "description": "Symfony SDK for g8scope — auto-captures exceptions and ships them to the ingest API. Thin adapter over g8scope/php.",
+    "keywords": [
+        "symfony",
+        "g8scope",
+        "error-tracking",
+        "observability",
+        "sdk"
+    ],
+    "license": "MIT",
+    "require": {
+        "php": "^8.2",
+        "g8scope/php": "*",
+        "symfony/http-kernel": "^6.0|^7.0",
+        "symfony/event-dispatcher": "^6.0|^7.0",
+        "symfony/dependency-injection": "^6.0|^7.0",
+        "symfony/config": "^6.0|^7.0"
+    },
+    "require-dev": {
+        "pestphp/pest": "^3.0",
+        "laravel/pint": "^1.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "G8Scope\\Symfony\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "G8Scope\\Symfony\\Tests\\": "tests/"
+        }
+    },
+    "scripts": {
+        "test": "vendor/bin/pest",
+        "lint": "vendor/bin/pint"
+    },
+    "repositories": [
+        {
+            "type": "path",
+            "url": "../g8scope-php",
+            "options": {
+                "symlink": true
+            }
+        }
+    ],
+    "config": {
+        "sort-packages": true,
+        "allow-plugins": {
+            "pestphp/pest-plugin": true
+        }
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true
+}
