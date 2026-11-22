@@ -1,7 +1,7 @@
 {
-    "name": "g8scope/symfony",
+    "name": "bliptrace/symfony",
     "version": "1.0.0",
-    "description": "Symfony SDK for g8scope — auto-captures exceptions and ships them to the ingest API. Thin adapter over g8scope/php.",
+    "description": "Symfony SDK for g8scope — auto-captures exceptions and ships them to the ingest API. Thin adapter over bliptrace/php.",
     "keywords": [
         "symfony",
         "g8scope",
@@ -12,7 +12,7 @@
     "license": "MIT",
     "require": {
         "php": "^8.2",
-        "g8scope/php": "*",
+        "bliptrace/php": "^1.1",
         "symfony/http-kernel": "^6.0|^7.0",
         "symfony/event-dispatcher": "^6.0|^7.0",
         "symfony/dependency-injection": "^6.0|^7.0",

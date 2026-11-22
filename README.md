@@ -1,8 +1,8 @@
-# g8scope/symfony
+# bliptrace/symfony
 
 Symfony SDK for **g8scope** — auto-captures uncaught exceptions in your Symfony
 application and ships them to the g8scope ingest API. It is a **thin adapter**
-over the runtime SDK [`g8scope/php`](../bliptrace-php): it adds a Symfony bundle,
+over the runtime SDK [`bliptrace/php`](../bliptrace-php): it adds a Symfony bundle,
 an exception event subscriber, configuration glue, and request-context
 enrichment. It **never throws into the host application** — capture is always
 best-effort and silently swallows its own failures.
@@ -10,7 +10,7 @@ best-effort and silently swallows its own failures.
 ## Installation
 
 ```bash
-composer require g8scope/symfony
+composer require bliptrace/symfony
 ```
 
 ## Register the bundle
