@@ -30,11 +30,11 @@ Create `config/packages/g8scope.yaml`:
 
 ```yaml
 g8scope:
-    enabled: '%env(bool:G8SCOPE_ENABLED)%'
-    key: '%env(G8SCOPE_KEY)%'
-    endpoint: '%env(G8SCOPE_ENDPOINT)%'
+    enabled: '%env(bool:BLIPTRACE_ENABLED)%'
+    key: '%env(BLIPTRACE_KEY)%'
+    endpoint: '%env(BLIPTRACE_ENDPOINT)%'
     environment: '%env(APP_ENV)%'
-    release: '%env(G8SCOPE_RELEASE)%'
+    release: '%env(BLIPTRACE_RELEASE)%'
     timeout: 3
     max_frames: 30
     max_message: 2000
@@ -52,11 +52,15 @@ g8scope:
 And in `.env`:
 
 ```dotenv
-G8SCOPE_ENABLED=true
-G8SCOPE_KEY=your-project-ingest-key
-G8SCOPE_ENDPOINT=https://ingest.scope.g8suite.com
-G8SCOPE_RELEASE=
+BLIPTRACE_ENABLED=true
+BLIPTRACE_KEY=your-project-ingest-key
+BLIPTRACE_ENDPOINT=https://ingest.scope.g8suite.com
+BLIPTRACE_RELEASE=
 ```
+
+> **Renamed:** the variables were `G8SCOPE_*` before. The bundle reads only what this YAML names,
+> so an app still on `G8SCOPE_*` keeps working until you change both files; rename the `.env`
+> entries and the YAML together.
 
 ### Configuration keys
 
