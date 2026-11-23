@@ -21,7 +21,7 @@ final class Configuration implements ConfigurationInterface
             ->children()
             ->booleanNode('enabled')->defaultTrue()->end()
             ->scalarNode('key')->defaultNull()->end()
-            ->scalarNode('endpoint')->defaultValue('https://ingest.scope.g8suite.com')->end()
+            ->scalarNode('endpoint')->defaultValue('https://ingest.bliptrace.com/v1/ingest')->end()
             ->scalarNode('environment')->defaultValue('production')->end()
             ->scalarNode('release')->defaultNull()->end()
             ->integerNode('timeout')->defaultValue(3)->end()

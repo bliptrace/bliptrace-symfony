@@ -54,7 +54,7 @@ And in `.env`:
 ```dotenv
 BLIPTRACE_ENABLED=true
 BLIPTRACE_KEY=your-project-ingest-key
-BLIPTRACE_ENDPOINT=https://ingest.scope.g8suite.com
+BLIPTRACE_ENDPOINT=https://ingest.bliptrace.com/v1/ingest
 BLIPTRACE_RELEASE=
 ```
 
@@ -68,7 +68,7 @@ BLIPTRACE_RELEASE=
 |---|---|---|
 | `enabled` | `true` | Master kill switch — set `false` to disable all capture. |
 | `key` | `null` | Project **ingest key** from the g8scope dashboard. |
-| `endpoint` | `https://ingest.scope.g8suite.com` | Ingest API base URL (the SDK posts to `{endpoint}/v1/ingest`). |
+| `endpoint` | `https://ingest.bliptrace.com/v1/ingest` | Ingest URL. A bare base URL also works (`/v1/ingest` is appended when missing). |
 | `environment` | `production` | Logical environment label. |
 | `release` | `null` | Release / version identifier. |
 | `timeout` | `3` | HTTP timeout (seconds) for the send. |
