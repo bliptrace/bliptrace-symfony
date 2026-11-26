@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-use G8Scope\Symfony\Context\RequestContext;
+use Bliptrace\Symfony\Context\RequestContext;
 use Symfony\Component\HttpFoundation\Request;
 
 it('builds method and url and strips sensitive headers', function (): void {

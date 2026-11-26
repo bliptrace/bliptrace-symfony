@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace G8Scope\Symfony\EventSubscriber;
+namespace Bliptrace\Symfony\EventSubscriber;
 
-use G8Scope\Symfony\Reporter;
+use Bliptrace\Symfony\Reporter;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 use Symfony\Component\HttpKernel\Event\ExceptionEvent;
 use Symfony\Component\HttpKernel\Event\TerminateEvent;

@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-use G8Scope\Php\Client;
-use G8Scope\Symfony\DependencyInjection\G8ScopeExtension;
-use G8Scope\Symfony\EventSubscriber\ExceptionSubscriber;
-use G8Scope\Symfony\Reporter;
+use Bliptrace\Php\Client;
+use Bliptrace\Symfony\DependencyInjection\BliptraceExtension;
+use Bliptrace\Symfony\EventSubscriber\ExceptionSubscriber;
+use Bliptrace\Symfony\Reporter;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\HttpKernel\KernelEvents;
 
@@ -14,7 +14,7 @@ function buildContainer(array $config = [], bool $compile = true): ContainerBuil
     $container = new ContainerBuilder;
     $container->setParameter('kernel.project_dir', sys_get_temp_dir());
 
-    (new G8ScopeExtension)->load([$config], $container);
+    (new BliptraceExtension)->load([$config], $container);
 
     if ($compile) {
         $container->compile();
@@ -27,9 +27,9 @@ it('registers the client, reporter and subscriber services', function (): void {
     // Inspect definitions before compilation removes unreferenced private services.
     $container = buildContainer(['key' => 'k', 'endpoint' => 'http://api'], compile: false);
 
-    expect($container->hasDefinition('g8scope.client'))->toBeTrue()
-        ->and($container->hasDefinition('g8scope.reporter'))->toBeTrue()
-        ->and($container->getDefinition('g8scope.exception_subscriber')->getTag('kernel.event_subscriber'))->not->toBeEmpty();
+    expect($container->hasDefinition('bliptrace.client'))->toBeTrue()
+        ->and($container->hasDefinition('bliptrace.reporter'))->toBeTrue()
+        ->and($container->getDefinition('bliptrace.exception_subscriber')->getTag('kernel.event_subscriber'))->not->toBeEmpty();
 });
 
 it('exposes the reporter via its class alias', function (): void {

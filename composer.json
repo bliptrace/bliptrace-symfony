@@ -1,10 +1,10 @@
 {
     "name": "bliptrace/symfony",
     "version": "1.0.0",
-    "description": "Symfony SDK for g8scope — auto-captures exceptions and ships them to the ingest API. Thin adapter over bliptrace/php.",
+    "description": "Symfony SDK for Bliptrace — auto-captures exceptions and ships them to the ingest API. Thin adapter over bliptrace/php.",
     "keywords": [
         "symfony",
-        "g8scope",
+        "bliptrace",
         "error-tracking",
         "observability",
         "sdk"
@@ -12,7 +12,7 @@
     "license": "MIT",
     "require": {
         "php": "^8.2",
-        "bliptrace/php": "^1.3",
+        "bliptrace/php": "^2.0",
         "symfony/http-kernel": "^6.0|^7.0",
         "symfony/event-dispatcher": "^6.0|^7.0",
         "symfony/dependency-injection": "^6.0|^7.0",
@@ -24,12 +24,12 @@
     },
     "autoload": {
         "psr-4": {
-            "G8Scope\\Symfony\\": "src/"
+            "Bliptrace\\Symfony\\": "src/"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "G8Scope\\Symfony\\Tests\\": "tests/"
+            "Bliptrace\\Symfony\\Tests\\": "tests/"
         }
     },
     "scripts": {
@@ -41,7 +41,8 @@
             "type": "path",
             "url": "../bliptrace-php",
             "options": {
-                "symlink": true
+                "symlink": true,
+                "versions": { "bliptrace/php": "2.0.0" }
             }
         }
     ],

@@ -1,7 +1,7 @@
 # bliptrace/symfony
 
-Symfony SDK for **g8scope** — auto-captures uncaught exceptions in your Symfony
-application and ships them to the g8scope ingest API. It is a **thin adapter**
+Symfony SDK for **Bliptrace** — auto-captures uncaught exceptions in your Symfony
+application and ships them to the Bliptrace ingest API. It is a **thin adapter**
 over the runtime SDK [`bliptrace/php`](../bliptrace-php): it adds a Symfony bundle,
 an exception event subscriber, configuration glue, and request-context
 enrichment. It **never throws into the host application** — capture is always
@@ -20,16 +20,16 @@ If you do not use Symfony Flex, add the bundle to `config/bundles.php`:
 ```php
 return [
     // ...
-    G8Scope\Symfony\G8ScopeBundle::class => ['all' => true],
+    Bliptrace\Symfony\BliptraceBundle::class => ['all' => true],
 ];
 ```
 
 ## Configuration
 
-Create `config/packages/g8scope.yaml`:
+Create `config/packages/bliptrace.yaml`:
 
 ```yaml
-g8scope:
+bliptrace:
     enabled: '%env(bool:BLIPTRACE_ENABLED)%'
     key: '%env(BLIPTRACE_KEY)%'
     endpoint: '%env(BLIPTRACE_ENDPOINT)%'
@@ -58,16 +58,12 @@ BLIPTRACE_ENDPOINT=https://ingest.bliptrace.com/v1/ingest
 BLIPTRACE_RELEASE=
 ```
 
-> **Renamed:** the variables were `G8SCOPE_*` before. The bundle reads only what this YAML names,
-> so an app still on `G8SCOPE_*` keeps working until you change both files; rename the `.env`
-> entries and the YAML together.
-
 ### Configuration keys
 
 | Key | Default | Description |
 |---|---|---|
 | `enabled` | `true` | Master kill switch — set `false` to disable all capture. |
-| `key` | `null` | Project **ingest key** from the g8scope dashboard. |
+| `key` | `null` | Project **ingest key** from the Bliptrace dashboard. |
 | `endpoint` | `https://ingest.bliptrace.com/v1/ingest` | Ingest URL. A bare base URL also works (`/v1/ingest` is appended when missing). |
 | `environment` | `production` | Logical environment label. |
 | `release` | `null` | Release / version identifier. |
@@ -79,7 +75,7 @@ BLIPTRACE_RELEASE=
 
 > **The project is resolved server-side from the ingest key** — it is never sent
 > in the payload. This is an anti-spoofing guarantee: an ingest key maps to
-> exactly one project on the g8scope backend.
+> exactly one project on the Bliptrace backend.
 
 ## Usage
 
@@ -92,7 +88,7 @@ unavailable ingest endpoint never affects the monitored application.
 To report an exception manually, fetch the reporter service:
 
 ```php
-use G8Scope\Symfony\Reporter;
+use Bliptrace\Symfony\Reporter;
 
 public function __construct(private readonly Reporter $reporter) {}
 

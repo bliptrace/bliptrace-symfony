@@ -2,20 +2,20 @@
 
 declare(strict_types=1);
 
-namespace G8Scope\Symfony\DependencyInjection;
+namespace Bliptrace\Symfony\DependencyInjection;
 
 use Symfony\Component\Config\Definition\Builder\TreeBuilder;
 use Symfony\Component\Config\Definition\ConfigurationInterface;
 
 /**
- * Declares the `g8scope` config tree. The project is NEVER configured here —
+ * Declares the `bliptrace` config tree. The project is NEVER configured here —
  * it is resolved server-side from the ingest key (anti-spoof).
  */
 final class Configuration implements ConfigurationInterface
 {
     public function getConfigTreeBuilder(): TreeBuilder
     {
-        $treeBuilder = new TreeBuilder('g8scope');
+        $treeBuilder = new TreeBuilder('bliptrace');
 
         $treeBuilder->getRootNode()
             ->children()

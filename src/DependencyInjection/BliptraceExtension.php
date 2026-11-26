@@ -2,23 +2,23 @@
 
 declare(strict_types=1);
 
-namespace G8Scope\Symfony\DependencyInjection;
+namespace Bliptrace\Symfony\DependencyInjection;
 
-use G8Scope\Php\Client;
-use G8Scope\Php\Config;
-use G8Scope\Symfony\EventSubscriber\ExceptionSubscriber;
-use G8Scope\Symfony\Reporter;
+use Bliptrace\Php\Client;
+use Bliptrace\Php\Config;
+use Bliptrace\Symfony\EventSubscriber\ExceptionSubscriber;
+use Bliptrace\Symfony\Reporter;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\DependencyInjection\Definition;
 use Symfony\Component\DependencyInjection\Reference;
 use Symfony\Component\HttpKernel\DependencyInjection\Extension;
 
 /**
- * Wires the g8scope services: builds an immutable {@see Config} from the resolved
+ * Wires the Bliptrace services: builds an immutable {@see Config} from the resolved
  * configuration, registers the runtime {@see Client}, the {@see Reporter}, and
  * the {@see ExceptionSubscriber} (tagged as an event subscriber).
  */
-final class G8ScopeExtension extends Extension
+final class BliptraceExtension extends Extension
 {
     /**
      * @param  array<int,array<string,mixed>>  $configs
@@ -43,35 +43,35 @@ final class G8ScopeExtension extends Extension
             'ignore_exceptions' => $config['ignore_exceptions'],
             'scrub_keys' => $config['scrub_keys'],
             'base_path' => $container->getParameter('kernel.project_dir'),
-            'sdk_name' => 'g8scope-symfony',
+            'sdk_name' => 'bliptrace-symfony',
         ]]);
         $configDefinition->setPublic(false);
-        $container->setDefinition('g8scope.config', $configDefinition);
+        $container->setDefinition('bliptrace.config', $configDefinition);
 
         $clientDefinition = new Definition(Client::class);
-        $clientDefinition->setArguments([new Reference('g8scope.config')]);
+        $clientDefinition->setArguments([new Reference('bliptrace.config')]);
         $clientDefinition->setPublic(true);
-        $container->setDefinition('g8scope.client', $clientDefinition);
-        $container->setAlias(Client::class, 'g8scope.client')->setPublic(true);
+        $container->setDefinition('bliptrace.client', $clientDefinition);
+        $container->setAlias(Client::class, 'bliptrace.client')->setPublic(true);
 
         $reporterDefinition = new Definition(Reporter::class);
         $reporterDefinition->setArguments([
-            new Reference('g8scope.client'),
+            new Reference('bliptrace.client'),
             new Reference('request_stack', ContainerBuilder::NULL_ON_INVALID_REFERENCE),
         ]);
         $reporterDefinition->setPublic(true);
-        $container->setDefinition('g8scope.reporter', $reporterDefinition);
-        $container->setAlias(Reporter::class, 'g8scope.reporter')->setPublic(true);
+        $container->setDefinition('bliptrace.reporter', $reporterDefinition);
+        $container->setAlias(Reporter::class, 'bliptrace.reporter')->setPublic(true);
 
         $subscriberDefinition = new Definition(ExceptionSubscriber::class);
-        $subscriberDefinition->setArguments([new Reference('g8scope.reporter')]);
+        $subscriberDefinition->setArguments([new Reference('bliptrace.reporter')]);
         $subscriberDefinition->addTag('kernel.event_subscriber');
         $subscriberDefinition->setPublic(false);
-        $container->setDefinition('g8scope.exception_subscriber', $subscriberDefinition);
+        $container->setDefinition('bliptrace.exception_subscriber', $subscriberDefinition);
     }
 
     public function getAlias(): string
     {
-        return 'g8scope';
+        return 'bliptrace';
     }
 }

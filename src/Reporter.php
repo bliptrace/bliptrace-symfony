@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace G8Scope\Symfony;
+namespace Bliptrace\Symfony;
 
-use G8Scope\Php\Client;
-use G8Scope\Symfony\Context\RequestContext;
+use Bliptrace\Php\Client;
+use Bliptrace\Symfony\Context\RequestContext;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\RequestStack;
 use Throwable;

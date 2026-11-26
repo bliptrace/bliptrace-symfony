@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace G8Scope\Symfony\Context;
+namespace Bliptrace\Symfony\Context;
 
 use Symfony\Component\HttpFoundation\Request;
 
@@ -26,7 +26,7 @@ final class RequestContext
             'headers' => self::headers($request),
         ];
 
-        $user = $request->attributes->get('_g8scope_user');
+        $user = $request->attributes->get('_bliptrace_user');
         if ($user !== null) {
             $context['user'] = ['id' => (string) $user];
         }
